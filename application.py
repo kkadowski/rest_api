@@ -43,7 +43,7 @@ def get_drink(id):
 
 @app.route('/drinks', methods=['POST'])
 def add_drink():
-    drink = Drink(name=request.json['name'], description=request.json[]'description')
+    drink = Drink(name=request.json['name'], description=request.json['description'])
     db.session.add(drink)
     db.session.commit()
     return {'id': drink.id}
