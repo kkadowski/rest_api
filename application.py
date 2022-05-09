@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import delete
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -48,7 +49,7 @@ def add_drink():
     db.session.commit()
     return {'id': drink.id}
 
-@app.route('/drinks/<id>', methods = ['DELETE'])
+@app.route('/drinks/<id>', methods=['DELETE'])
 def delete_drink(id):
     drink = Drink.query.get(id)
     if drink is None:
@@ -56,7 +57,4 @@ def delete_drink(id):
     db.session.delete(drink)
     db.session.commit()
     return {"message":"Drink deleted"}
-    
-    
-    
     
